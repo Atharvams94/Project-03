@@ -1,0 +1,22 @@
+pragma solidity ^0.8.0;
+
+contract Escrow {
+    address payable public buyer;
+    address payable public seller;
+    uint public amount;
+    bool public isFulfilled;
+
+    constructor(address payable _buyer, address payable _seller, uint _amount) public payable {
+        require(msg.value == _amount, "Incorrect amount sent");
+        buyer = _buyer;
+        seller = _seller;
+        amount = _amount;
+    }
+
+    function fulfillContract() public {
+        require(msg.sender == seller, "Only seller can fulfill contract");
+        require(!isFulfilled, "Contract already fulfilled");
+        isFulfilled = true;
+        seller.transfer(amount);
+    }
+}
