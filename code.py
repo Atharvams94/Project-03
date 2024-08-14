@@ -5,16 +5,6 @@ def fft(data):
 data = np.random.rand(100)
 
 
-      data_file: Path to the file containing the data.
-      algorithm: Algorithm to use for analysis (default or "advanced").
-
-  Returns:
-      A dictionary containing analysis results.
-
-  Raises:
-      ValueError: If the algorithm is not supported.
-  """
-
   # Read data from file
   try:
     with open(data_file, 'r') as f:
